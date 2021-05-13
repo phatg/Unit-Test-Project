@@ -31,7 +31,12 @@ function isOdd(number) {
 
 function myRange(min, max, step=1) {
   const array = []
-  for (let i = min; i <= max; i++) {
+
+  if(typeof min !== "number" || typeof max !== "number") {
+    throw Error("That is not a number!")
+  }
+
+  for (let i = min; i <= max; i+=step) {
     array.push(i);
   }
   return array
@@ -50,10 +55,15 @@ function fizzBuzz(max) {
   }
 
   const array = []
+
+  //if i divisible by 3 or 5 AND is NOT divisible by 3 AND 5
+
   for (let i = 0; i < max; i += 1) {
-    if (i % 3 === 0 || i % 5 !== 0) {
+    //if num is divisible by 3 and NOT divisible by 5
+    if (i % 3 === 0 && i % 5 !== 0) {
       array.push(i);
-    } else if (i % 5 === 0 || i % 3 !== 0) {
+      //if num is divisible by 5 and NOT dividisble by 3
+    } else if (i % 5 === 0 && i % 3 !== 0) {
       array.push(i);
     }
   }
