@@ -34,32 +34,50 @@ describe('hiddenCounter()', function () {
 describe('myMap', function () {
  it("should function like the built in Array#map", function () {
     //Arrange
-
+    let expected = [6, 10, 4, 14]
+    let array = [3, 5, 2, 7]
+    let cb1 = function(num) {
+      return num*2;
+    }
     //Act
-
+    let actual = myMap(array, cb1); //this value is an array
     //Assert
-   expect.fail('Remove this expect.fail and replace it with your test');
+    expect(actual).to.eql(expected);
   });
 
   it("should not call the built in Array#map", function () {
-     //Arrange
+    //Arrange -> set up the spy
+    const array = [3, 5, 2, 7]    //this is the starting array that we pass in
+    const cb = function(num) {    //the cb turns it into [6, 10, 4, 14]
+      return num*2;
+    }
 
-    //Act
+    const arraySpy = chai.spy.on(myMap, "map")
+    //Act -> invoke the thing we want to spy on
 
-    //Assert
-    expect.fail('Remove this expect.fail and replace it with your test');
+    myMap(array, cb);
+
+    //Assert -> run the test
+    expect(arraySpy).to.not.have.been.called();
   });
 })
 
 //4. avgValue
+//When we pass an array of numbers to the function and it returns the average, our code is working
+
 describe('avgValue', function () {
   it('should return the average of an array of numbers', function () {
-     //Arrange
-
+    //Arrange
+    //Set up a sample array for the test
+    let array = [2, 5, 4, 7, 1];
+    //We expected the average of that sample array to equal 3.8
+    let expected = 3.8;
     //Act
-
+    //Run the function to get the actual return value
+    let actual = avgValue(array)
     //Assert
-    expect.fail('Remove this expect.fail and replace it with your test');
+    //We expected the actual return value to be 3.8
+    expect(actual).to.equal(expected);
 
   })
 })
