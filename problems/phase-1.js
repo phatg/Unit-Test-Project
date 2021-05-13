@@ -51,7 +51,7 @@ function fizzBuzz(max) {
     throw TypeError('needs to be a number')
   }
   if (max < 0){
-    throw new Error
+    throw new RangeError
   }
 
   const array = []
